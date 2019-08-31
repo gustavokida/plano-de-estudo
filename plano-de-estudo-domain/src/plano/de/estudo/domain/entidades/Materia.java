@@ -5,6 +5,7 @@
  */
 package plano.de.estudo.domain.entidades;
 
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -14,11 +15,12 @@ import java.util.Date;
 public class Materia {
     private int id;
     private String nome;
-    private Date horario;
-    private int cargahoraria;
+    private Time horario;
+    private int cargaHoraria;
     private float media;
     private boolean aprovado;
     private String observacao;
+    private int idUsuario;
 
     public int getId() {
         return id;
@@ -36,20 +38,12 @@ public class Materia {
         this.nome = nome;
     }
 
-    public Date getHorario() {
-        return horario;
+    public int getCargaHoraria() {
+        return cargaHoraria;
     }
 
-    public void setHorario(Date horario) {
-        this.horario = horario;
-    }
-
-    public int getCargahoraria() {
-        return cargahoraria;
-    }
-
-    public void setCargahoraria(int cargahoraria) {
-        this.cargahoraria = cargahoraria;
+    public void setCargaHoraria(int cargahoraria) {
+        this.cargaHoraria = cargahoraria;
     }
 
     public float getMedia() {
@@ -74,6 +68,22 @@ public class Materia {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public Time getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Time horario) {
+        this.horario = horario;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
     
     

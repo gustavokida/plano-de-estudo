@@ -17,7 +17,8 @@ public class Tarefas {
     private Date data;
     private boolean feito;
     private boolean importante;
-    private Date data_entrega;
+    private Date dataEntrega;
+    private int idConteudo;
 
     public int getId() {
         return id;
@@ -59,12 +60,20 @@ public class Tarefas {
         this.importante = importante;
     }
 
-    public Date getData_entrega() {
-        return data_entrega;
+    public Date getDataEntrega() {
+        return dataEntrega;
     }
 
-    public void setData_entrega(Date data_entrega) {
-        this.data_entrega = data_entrega;
+    public void setDataEntrega(Date dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+
+    public int getIdConteudo() {
+        return idConteudo;
+    }
+
+    public void setIdConteudo(int idConteudo) {
+        this.idConteudo = idConteudo;
     }
 
    

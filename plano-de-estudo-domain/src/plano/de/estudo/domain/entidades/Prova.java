@@ -16,6 +16,7 @@ public class Prova {
     private float nota;
     private Date data;
     private String observacao;
+    private int idConteudo;
 
     public int getId() {
         return id;
@@ -47,6 +48,14 @@ public class Prova {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public int getIdConteudo() {
+        return idConteudo;
+    }
+
+    public void setIdConteudo(int idConteudo) {
+        this.idConteudo = idConteudo;
     }
     
     

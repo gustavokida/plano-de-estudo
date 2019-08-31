@@ -16,6 +16,7 @@ public class Conteudo {
     private String nome;
     private String observacao;
     private Date data;
+    private int idMateria;
 
     public int getId() {
         return id;
@@ -47,6 +48,14 @@ public class Conteudo {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public int getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(int idMateria) {
+        this.idMateria = idMateria;
     }
     
     
