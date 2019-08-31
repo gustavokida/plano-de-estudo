@@ -1,18 +1,17 @@
 
 package plano.de.estudo.domain.dao.postgresql;
  
-import plano.de.estudo.domain.dao.IProvaDAO;
- import plano.de.estudo.domain.entidades.Prova;
+import plano.de.estudo.domain.dao.IUsuarioMateriaDAO;
+ import plano.de.estudo.domain.entidades.UsuarioMateria;
  import java.sql.Connection;
-import java.sql.Date;
  import java.sql.DriverManager;
  import java.sql.PreparedStatement;
  import java.sql.ResultSet;
  import java.util.ArrayList;
  import java.util.List;
  
-public class ProvaDAOImplPostgreSQL 
- implements IProvaDAO {
+public class UsuarioMateriaDAOImplPostgreSQL 
+ implements IUsuarioMateriaDAO {
  
  private Connection criaConexao(){
  Connection conexao = null;
@@ -26,13 +25,11 @@ public class ProvaDAOImplPostgreSQL
  }
  
     
- public void inserir(Prova ent) {
+ public void inserir(UsuarioMateria ent) {
  Connection con = criaConexao();
  
- String sql = "insert into prova (nota)" + "VALUES ('" + ent.getNota()+ "')," + 
-         "(data)" + "VALUES ('" + ent.getData()+ "')," +
-         "(observacao)" + "VALUES ('" + ent.getObservacao()+ "')," +
-         "(idConteudo)" + "VALUES ('" + ent.getIdConteudo()+ "')" ;
+ String sql = "insert into usuarioMateria (idUsuario)" + "VALUES ('" + ent.getIdUsuario() + "')," +
+         "(idMateria)" + "VALUES ('" + ent.getIdMateria()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -42,23 +39,17 @@ public class ProvaDAOImplPostgreSQL
  }
  
     
- public void atualizar(Prova ent) {
+ public void atualizar(UsuarioMateria ent) {
  Connection con = criaConexao();
- String sql = "update prova set " + "nota = ? where id = ?," + 
-        "data = ? where id = ?," + 
-        "observacao = ? where id = ?," + 
-        "idConteudo = ? where id = ?";
+ String sql = "update usuarioMateria set " + "idUsuario = ? where id = ?," +
+        "idMateria = ? where id = ?";
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);
- ps.setFloat(1, ent.getNota());
+ ps.setInt(1, ent.getIdUsuario());
  ps.setInt(2, ent.getId());
- ps.setDate(3, (Date) ent.getData());
+ ps.setInt(3, ent.getIdMateria());
  ps.setInt(4, ent.getId());
- ps.setString(5, ent.getObservacao());
- ps.setInt(6, ent.getId());
- ps.setInt(7, ent.getIdConteudo());
- ps.setInt(8, ent.getId());
  ps.execute();
  ps.close();
  con.close();
@@ -70,7 +61,7 @@ public class ProvaDAOImplPostgreSQL
     
  public void remover(int id) {
  Connection con = criaConexao();
- String sql = "delete from prova where id = "+ id;
+ String sql = "delete from usuarioMateria where id = "+ id;
  
  try{
  con.createStatement().execute(sql);
@@ -80,21 +71,20 @@ public class ProvaDAOImplPostgreSQL
  }
  
     
- public List<Prova> consultar() {
+ public List<UsuarioMateria> consultar() {
  try{
- List<Prova> lista = new ArrayList<>();
- String sql = "select * from prova";
+ List<UsuarioMateria> lista = new ArrayList<>();
+ String sql = "select * from usuarioMateria";
  Connection con = criaConexao();
  
  ResultSet res = con.createStatement().executeQuery(sql);
  
  while(res.next()){
- Prova c = new Prova();
+ UsuarioMateria c = new UsuarioMateria();
  c.setId(res.getInt("id"));
- c.setData(res.getDate("data"));
- c.setNota(res.getFloat("nota"));
- c.setObservacao(res.getString("nome"));
- c.setIdConteudo(res.getInt("idConteudo"));
+ c.setIdUsuario(res.getInt("idUsuario"));
+ c.setIdMateria(res.getInt("idMateria"));
+
  lista.add(c);
  }
  

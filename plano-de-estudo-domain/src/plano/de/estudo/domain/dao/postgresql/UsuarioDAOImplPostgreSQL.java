@@ -14,23 +14,23 @@ public class UsuarioDAOImplPostgreSQL
  implements IUsuarioDAO {
  
  private Connection criaConexao(){
- Connection conexao = null;
- try{
- Class.forName("org.postgresql.Driver");
- conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/planoestudo", "postgres", "123");
- } catch(Exception erro){
- erro.printStackTrace();
- }
- return conexao;
+    Connection conexao = null;
+    try{
+        Class.forName("org.postgresql.Driver");
+        conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/plano", "postgres", "123");
+    } catch(Exception erro){
+    erro.printStackTrace();
+    }
+    return conexao;
  }
  
     
  public void inserir(Usuario ent) {
  Connection con = criaConexao();
  
- String sql = "insert into usuario (nome)" + "VALUES ('" + ent.getNome() + "')" +
-         "insert into usuario (email)" + "VALUES ('" + ent.getEmail()+ "')" +
-         "insert into usuario (celular)" + "VALUES ('" + ent.getCelular()+ "')";
+ String sql = "insert into usuario (nome)" + "VALUES ('" + ent.getNome() + "')," +
+         "(email)" + "VALUES ('" + ent.getEmail()+ "')," +
+         "(celular)" + "VALUES ('" + ent.getCelular()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -42,9 +42,9 @@ public class UsuarioDAOImplPostgreSQL
     
  public void atualizar(Usuario ent) {
  Connection con = criaConexao();
- String sql = "update usuario set " + "nome = ? where id = ?" +
-         "update usuario set " + "email = ? where id = ?" +
-         "update usuario set " + "celular = ? where id = ?" ;
+ String sql = "update usuario set " + "nome = ? where id = ?," +
+        "email = ? where id = ?," +
+        "celular = ? where id = ?" ;
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);

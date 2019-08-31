@@ -8,7 +8,6 @@ import java.sql.Date;
  import java.sql.DriverManager;
  import java.sql.PreparedStatement;
  import java.sql.ResultSet;
-import java.sql.Time;
  import java.util.ArrayList;
  import java.util.List;
  
@@ -19,7 +18,7 @@ public class ConteudoDAOImplPostgreSQL
  Connection conexao = null;
  try{
  Class.forName("org.postgresql.Driver");
- conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/planoestudo", "postgres", "123");
+ conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/plano", "postgres", "123");
  } catch(Exception erro){
  erro.printStackTrace();
  }
@@ -30,10 +29,10 @@ public class ConteudoDAOImplPostgreSQL
  public void inserir(Conteudo ent) {
  Connection con = criaConexao();
  
- String sql = "insert into conteudo (nome)" + "VALUES ('" + ent.getNome() + "');" +
-         "insert into conteudo (observacao)" + "VALUES ('" + ent.getObservacao()+ "');" +
-         "insert into conteudo (data)" + "VALUES ('" + ent.getData()+ "');" +
-         "insert into conteudo (idMateria)" + "VALUES ('" + ent.getIdMateria()+ "');";
+ String sql = "insert into conteudo (nome)" + "VALUES ('" + ent.getNome() + "')," +
+         "(observacao)" + "VALUES ('" + ent.getObservacao()+ "')," +
+         "(data)" + "VALUES ('" + ent.getData()+ "')," +
+         "(idMateria)" + "VALUES ('" + ent.getIdMateria()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -45,10 +44,10 @@ public class ConteudoDAOImplPostgreSQL
     
  public void atualizar(Conteudo ent) {
  Connection con = criaConexao();
- String sql = "update conteudo set " + "nome = ? where id = ?" + 
-         "update conteudo set " + "observacao = ? where id = ?" + 
-         "update conteudo set " + "data = ? where id = ?" +
-         "update conteudo set " + "idMateria = ? where id = ?"; 
+ String sql = "update conteudo set " + "nome = ? where id = ?," + 
+        "observacao = ? where id = ?," + 
+        "data = ? where id = ?," +
+        "idMateria = ? where id = ?"; 
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);

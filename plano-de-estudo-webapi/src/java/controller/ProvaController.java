@@ -11,19 +11,27 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import plano.de.estudo.domain.dao.postgresql.ProvaDAOImplPostgreSQL;
 
 
 @Path("/prova")
 public class ProvaController {
     
     private IProvaDAO
-            banco = new ProvaDAOImpl();
+            banco = new ProvaDAOImplPostgreSQL();
     
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Prova> index(){
         return banco.consultar();
+    }
+
+    @GET
+    @Path("/remover/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void remover(@PathParam("id") int id){
+        banco.remover(id);
     }
  
     @GET
@@ -42,7 +50,7 @@ public class ProvaController {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/cadastrar/{nota}{data}{observacao}{idConteudo}")
+    @Path("/cadastrar/{nota}&{data}&{observacao}&{idConteudo}")
     public String cadastrar(@PathParam("nota") float nota,
             @PathParam("data") Date data,
             @PathParam("observacao") String observacao,
@@ -62,4 +70,20 @@ public class ProvaController {
         String ret = "{\"status\": 1}";
         return ret;
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/atualizar/{nota}&{data}&{observacao}&{idConteudo}")
+    public void atualizar(@PathParam("nota") float nota,
+            @PathParam("data") Date data,
+            @PathParam("observacao") String observacao,
+            @PathParam("idConteudo") int idConteudo){
+        Prova nova = new Prova();
+        nova.setNota(nota);
+        nova.setData(data);
+        nova.setObservacao(observacao);
+        nova.setIdConteudo(idConteudo);
+        banco.atualizar(nova);
+    }
+    
 }

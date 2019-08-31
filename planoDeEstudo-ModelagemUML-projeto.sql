@@ -1,68 +1,59 @@
+CREATE DATABASE plano;
+
 /* planoDeEstudo-ModelagemUML-projeto: */
-DROP SCHEMA IF EXISTS alg CASCADE;
 
-CREATE SCHEMA alg;
-
-CREATE TABLE alg.Usuario (
-    id INT SERIAL PRIMARY KEY,
-    nome String,
-    email String,
-    celular String
+CREATE TABLE Usuario (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR,
+    email VARCHAR,
+    celular VARCHAR
 );
 
-CREATE TABLE alg.Materia (
-    id INT SERIAL PRIMARY KEY,
-    nome String,
+CREATE TABLE Materia (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR,
     horario TIME,
     cargaHoraria INT,
     media FLOAT,
     aprovado BOOLEAN,
-    observacao String,
-    idUsuario INT
+    observacao VARCHAR
 );
 
-CREATE TABLE alg.Prova (
-    id INT SERIAL PRIMARY KEY,
+CREATE TABLE UsuarioMateria (
+    id SERIAL PRIMARY KEY,
+    idUsuario INT,
+    idMateria INT,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(id),
+    FOREIGN KEY (idMateria) REFERENCES Materia(id)
+);
+
+CREATE TABLE Prova (
+    id SERIAL PRIMARY KEY,
     nota FLOAT,
     data DATE,
-    observacao String,
-    idConteudo INT
+    observacao VARCHAR,
+    idConteudo INT,
+    FOREIGN KEY (idConteudo) REFERENCES Conteudo(id)
 );
 
-CREATE TABLE alg.Conteudo (
-    id INT SERIAL PRIMARY KEY,
-    nome String,
-    observacao String,
+CREATE TABLE Conteudo (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR,
+    observacao VARCHAR,
     data DATE,
-    idMateria INT
+    idMateria INT,
+    FOREIGN KEY(idMateria) REFERENCES Materia(id)
 );
 
-CREATE TABLE alg.Tarefas (
-    id INT SERIAL PRIMARY KEY,
-    observacao String,
+CREATE TABLE Tarefas (
+    id SERIAL PRIMARY KEY,
+    observacao VARCHAR,
     data DATE,
     feito BOOLEAN,
     importante BOOLEAN,
     dataEntrega DATE,
-    idConteudo INT
+    idConteudo INT,
+    FOREIGN KEY(idConteudo) REFERENCES Conteudo(id)
 );
  
-ALTER TABLE alg.Materia ADD CONSTRAINT FK_Materia_2
-    FOREIGN KEY (idUsuario)
-    REFERENCES Usuario (id);
- 
-ALTER TABLE alg.Prova ADD CONSTRAINT FK_Prova_2
-    FOREIGN KEY (idConteudo)
-    REFERENCES Conteudo (id);
- 
-ALTER TABLE alg.Conteudo ADD CONSTRAINT FK_Conteudo_2
-    FOREIGN KEY (id)
-    REFERENCES Prova (id);
- 
-ALTER TABLE Conteudo ADD CONSTRAINT FK_Conteudo_3
-    FOREIGN KEY (idMateria)
-    REFERENCES Materia (id);
- 
-ALTER TABLE Tarefas ADD CONSTRAINT FK_Tarefas_1
-    FOREIGN KEY (idConteudo)
-    REFERENCES Conteudo (id);
+

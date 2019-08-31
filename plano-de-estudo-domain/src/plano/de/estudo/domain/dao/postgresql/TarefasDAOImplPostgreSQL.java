@@ -18,7 +18,7 @@ public class TarefasDAOImplPostgreSQL
  Connection conexao = null;
  try{
  Class.forName("org.postgresql.Driver");
- conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/planoestudo", "postgres", "123");
+ conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/plano", "postgres", "123");
  } catch(Exception erro){
  erro.printStackTrace();
  }
@@ -29,12 +29,12 @@ public class TarefasDAOImplPostgreSQL
  public void inserir(Tarefas ent) {
  Connection con = criaConexao();
  
- String sql = "insert into tarefas (observacao)" + "VALUES ('" + ent.getObservacao()+ "')" +
-         "insert into tarefas (data)" + "VALUES ('" + ent.getData()+ "')" +
-         "insert into tarefas (feito)" + "VALUES ('" + ent.isFeito()+ "')" +
-         "insert into tarefas (importante)" + "VALUES ('" + ent.isImportante()+ "')" +
-         "insert into tarefas (dataEntrega)" + "VALUES ('" + ent.getDataEntrega()+ "')" +
-         "insert into tarefas (idConteudo)" + "VALUES ('" + ent.getIdConteudo()+ "')";
+ String sql = "insert into tarefas (observacao)" + "VALUES ('" + ent.getObservacao()+ "')," +
+         "(data)" + "VALUES ('" + ent.getData()+ "')," +
+         "(feito)" + "VALUES ('" + ent.isFeito()+ "')," +
+         "(importante)" + "VALUES ('" + ent.isImportante()+ "')," +
+         "(dataEntrega)" + "VALUES ('" + ent.getDataEntrega()+ "')," +
+         "(idConteudo)" + "VALUES ('" + ent.getIdConteudo()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -46,12 +46,12 @@ public class TarefasDAOImplPostgreSQL
     
  public void atualizar(Tarefas ent) {
  Connection con = criaConexao();
- String sql = "update tarefas set " + "observacao = ? where id = ?" +
-         "update tarefas set " + "data = ? where id = ?" +
-         "update tarefas set " + "feito = ? where id = ?" +
-         "update tarefas set " + "importante = ? where id = ?" +
-         "update tarefas set " + "dataEntrega = ? where id = ?" +
-         "update tarefas set " + "idConteudo = ? where id = ?";
+ String sql = "update tarefas set " + "observacao = ? where id = ?," +
+        "data = ? where id = ?," +
+        "feito = ? where id = ?," +
+        "importante = ? where id = ?," +
+        "dataEntrega = ? where id = ?," +
+        "idConteudo = ? where id = ?";
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);

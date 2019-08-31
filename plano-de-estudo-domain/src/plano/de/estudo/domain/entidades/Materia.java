@@ -20,7 +20,6 @@ public class Materia {
     private float media;
     private boolean aprovado;
     private String observacao;
-    private int idUsuario;
 
     public int getId() {
         return id;
@@ -77,14 +76,5 @@ public class Materia {
     public void setHorario(Time horario) {
         this.horario = horario;
     }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-    
     
 }

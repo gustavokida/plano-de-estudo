@@ -17,7 +17,7 @@ public class MateriaDAOImplPostgreSQL
  Connection conexao = null;
  try{
  Class.forName("org.postgresql.Driver");
- conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/planoestudo", "postgres", "123");
+ conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/plano", "postgres", "123");
  } catch(Exception erro){
  erro.printStackTrace();
  }
@@ -28,13 +28,12 @@ public class MateriaDAOImplPostgreSQL
  public void inserir(Materia ent) {
  Connection con = criaConexao();
  
- String sql = "insert into materia (nome)" + "VALUES ('" + ent.getNome() + "')" +
-         "insert into materia (horario)" + "VALUES ('" + ent.getHorario()+ "')" + 
-         "insert into materia (cargaHoraria)" + "VALUES ('" + ent.getCargaHoraria()+ "')" + 
-         "insert into materia (media)" + "VALUES ('" + ent.getMedia()+ "')" +
-         "insert into materia (aprovado)" + "VALUES ('" + ent.isAprovado()+ "')" +
-         "insert into materia (observacao)" + "VALUES ('" + ent.getObservacao()+ "')" +
-         "insert into materia (idUsuario)" + "VALUES ('" + ent.getIdUsuario()+ "')" ;
+ String sql = "insert into materia (nome)" + "VALUES ('" + ent.getNome() + "')," +
+         "(horario)" + "VALUES ('" + ent.getHorario()+ "')," + 
+         "(cargaHoraria)" + "VALUES ('" + ent.getCargaHoraria()+ "')," + 
+         "(media)" + "VALUES ('" + ent.getMedia()+ "')," +
+         "(aprovado)" + "VALUES ('" + ent.isAprovado()+ "')," +
+         "(observacao)" + "VALUES ('" + ent.getObservacao()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -46,13 +45,12 @@ public class MateriaDAOImplPostgreSQL
     
  public void atualizar(Materia ent) {
  Connection con = criaConexao();
- String sql = "update materia set " + "nome = ? where id = ?" +
-         "update materia set " + "horario = ? where id = ?" +
-         "update materia set " + "cargaHoraria = ? where id = ?" +
-         "update materia set " + "media = ? where id = ?" +
-         "update materia set " + "aprovado = ? where id = ?" +
-         "update materia set " + "observacao = ? where id = ?" +
-         "update materia set " + "idUsuario = ? where id = ?";
+ String sql = "update materia set " + "nome = ? where id = ?," +
+        "horario = ? where id = ?," +
+        "cargaHoraria = ? where id = ?," +
+        "media = ? where id = ?," +
+        "aprovado = ? where id = ?," +
+        "observacao = ? where id = ?";
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);
@@ -68,9 +66,6 @@ public class MateriaDAOImplPostgreSQL
  ps.setInt(10, ent.getId());
  ps.setString(11, ent.getObservacao());
  ps.setInt(12, ent.getId());
- ps.setInt(13, ent.getIdUsuario());
- ps.setInt(14, ent.getId());
- 
  ps.execute();
  ps.close();
  con.close();
@@ -109,7 +104,6 @@ public class MateriaDAOImplPostgreSQL
  c.setMedia(res.getFloat("media"));
  c.setAprovado(res.getBoolean("aprovado"));
  c.setObservacao(res.getString("observacao"));
- c.setIdUsuario(res.getInt("idUsuario"));
  lista.add(c);
  }
  

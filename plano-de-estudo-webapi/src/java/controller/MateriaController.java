@@ -11,19 +11,27 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import plano.de.estudo.domain.dao.postgresql.MateriaDAOImplPostgreSQL;
 
 
 @Path("/materia")
 public class MateriaController {
     
     private IMateriaDAO
-            banco = new MateriaDAOImpl();
+            banco = new MateriaDAOImplPostgreSQL();
     
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Materia> index(){
         return banco.consultar();
+    }
+    
+    @GET
+    @Path("/remover/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void remover(@PathParam("id") int id){
+        banco.remover(id);
     }
  
     @GET
@@ -42,14 +50,13 @@ public class MateriaController {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/cadastrar/{nome}{horario}{cargaHoraria}{media}{aprovado}{observacao}{idUsuario}")
+    @Path("/cadastrar/{nome}&{horario}&{cargaHoraria}&{media}&{aprovado}&{observacao}")
     public String cadastrar(@PathParam("nome") String nome,
             @PathParam("horario") Time horario,
             @PathParam("cargaHoraria") int cargaHoraria,
             @PathParam("media") float media,
             @PathParam("aprovado") boolean aprovado,
-            @PathParam("observacao") String observacao,
-            @PathParam("idUsuario") int idUsuario){
+            @PathParam("observacao") String observacao){
         try{
             System.out.println("Cadastrando");
             Materia nova = new Materia();
@@ -59,7 +66,6 @@ public class MateriaController {
             nova.setMedia(media);
             nova.setAprovado(aprovado);
             nova.setObservacao(observacao);
-            nova.setIdUsuario(idUsuario);
             
             banco.inserir(nova);
         } catch(Exception erro){
@@ -68,4 +74,25 @@ public class MateriaController {
         String ret = "{\"status\": 1}";
         return ret;
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/atualizar/{nome}&{horario}&{cargaHoraria}&{media}&{aprovado}&{observacao}")
+    public void atualizar(@PathParam("nome") String nome,
+            @PathParam("horario") Time horario,
+            @PathParam("cargaHoraria") int cargaHoraria,
+            @PathParam("media") float media,
+            @PathParam("aprovado") boolean aprovado,
+            @PathParam("observacao") String observacao){
+        Materia nova = new Materia();
+        nova.setNome(nome);
+        nova.setHorario(horario);
+        nova.setCargaHoraria(cargaHoraria);
+        nova.setMedia(media);
+        nova.setAprovado(aprovado);
+        nova.setObservacao(observacao);
+
+        banco.atualizar(nova);
+    }
+    
 }

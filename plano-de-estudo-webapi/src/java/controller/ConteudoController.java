@@ -11,13 +11,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import plano.de.estudo.domain.dao.postgresql.ConteudoDAOImplPostgreSQL;
 
 
 @Path("/conteudo")
 public class ConteudoController {
     
     private IConteudoDAO
-            banco = new ConteudoDAOImpl();
+            banco = new ConteudoDAOImplPostgreSQL();
     
     @GET
     @Path("/")
@@ -42,7 +43,7 @@ public class ConteudoController {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/cadastrar/{nome}{observacao}{data}{idMateria}")
+    @Path("/cadastrar/{nome}&{observacao}&{data}&{idMateria}")
     public String cadastrar(@PathParam("nome") String nome,
             @PathParam("observacao") String observacao,
             @PathParam("data") Date data,
@@ -60,5 +61,21 @@ public class ConteudoController {
         }
         String ret = "{\"status\": 1}";
         return ret;
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/atualizar/{nome}&{observacao}&{data}&{idMateria}")
+    public void atualizar(@PathParam("nome") String nome,
+            @PathParam("observacao") String observacao,
+            @PathParam("data") Date data,
+            @PathParam("idMateria") int idMateria){
+        Conteudo nova = new Conteudo();
+        nova.setNome(nome);
+        nova.setObservacao(observacao);
+        nova.setData(data);
+        nova.setIdMateria(idMateria);
+        banco.atualizar(nova);
+        
     }
 }
