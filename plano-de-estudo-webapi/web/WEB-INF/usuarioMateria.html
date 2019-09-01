@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>plano-de-estudo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Lista de usuarioMateria</h1>
+        <table>
+            <thead>
+             <th>Id</th>
+             <th>idUsuario</th>
+             <th>idMateria</th>
+             </thead>
+             <tbody id="dados">
+
+            </tbody>
+        </table>    
+     
+        <h1>Cadastro de usuarioMateria</h1>
+        <form name="cadastraUsuarioMateria" method="get">
+           IdUsuario:<input type="text" id="cadastraIdUsuario" name="cadastraIdUsuario" onclick="this.value=''">
+           <br><br>
+           IdMateria:<input type="text" id="cadastraIdMateria" name="cadastraIdMateria" onclick="this.value=''">
+
+            <button onclick="Cadastra()">Cadastrar</button>
+            <script>
+                function Cadastra(){
+                    var IdUsuario = document.getElementById('cadastraIdUsuario').value;
+                    var IdMateria = document.getElementById('cadastraIdMateria').value;
+
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuariomateria/cadastrar/"
+                             +IdUsuario+'&'+IdMateria);
+                }
+            </script>
+        </form>
+        
+        <h1>Atualiza dados de usuariomateria</h1>
+        <form name="atualizaUsuarioMateria" method="get">
+           IdUsuario:<input type="text" id="atualizaIdUsuario" name="atualizaIdUsuario" onclick="this.value=''">
+           <br><br>
+           IdMateria:<input type="text" id="atualizaIdMateria" name="atualizaIdMateria" onclick="this.value=''">
+
+            <button onclick="Atualiza()">Atualizar</button>
+            <script>
+                function Atualiza(){
+                    var IdUsuario = document.getElementById('atualizaIdUsuario').value;
+                    var IdMateria = document.getElementById('atualizaIdMateria').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuariomateria/atualizar/"
+                             +IdUsuario+'&'+IdMateria);
+            </script>
+        </form>
+        
+        
+        <h1>Remover usuarioMateria</h1>
+        <form name="removeUsuarioMateria" method="get">
+           Id:<input type="text" id="removeId" name="removeId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Remove()">Remover</button>
+            <script>
+                function Remove(){
+                    var id = document.getElementById('removeId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuariomateria/remover/"
+                             +id);
+                }
+            </script>
+        </form>
+        
+        <h1>Seleciona usuarioMateria</h1>
+        <form name="selecionaUsuarioMateria" method="get">
+               Id:<input type="text" id="selecionaId" name="selecionaId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Seleciona()">Selecionar</button>
+            <script>
+                function Seleciona(){
+                    var id = document.getElementById('selecionaId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuariomateria/select/"
+                             +id);
+                        function(data){
+                            "Id:"+data.id+"\nId Usuario:"+data.idUsuario+"\nId Materia:"
+                                    +data.idMateria;
+                        };
+                 }
+            </script>
+        </form>
+        
+    </body>
+    <script>
+        $(document).ready(function(){
+            $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuariomateria/", 
+            function(data){
+                for(var i=0;i<data.length;i++){
+                    var c = data[i];
+                    var dados = $("#dados");
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.idUsuario+"</td></tr>"
+                                    +c.idMateria+"</td></tr>");
+                }    
+            });
+        });
+    </script>
+</html>

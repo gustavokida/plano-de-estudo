@@ -70,7 +70,7 @@ public class UsuarioController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/atualiar/{nome}&{email}&{celular}")
+    @Path("/atualizar/{nome}&{email}&{celular}")
     public void atualizar(@PathParam("nome") String nome,
             @PathParam("email") String email,
             @PathParam("celular") String celular){    

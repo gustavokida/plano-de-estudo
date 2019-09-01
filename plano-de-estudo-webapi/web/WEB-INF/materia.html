@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>plano-de-estudo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Lista de materia</h1>
+        <table>
+            <thead>
+             <th>Id</th>
+             <th>Nome</th>
+             <th>Horario</th>
+             <th>CargaHoraria</th>
+             <th>Media</th>
+             <th>Aprovado</th>
+             <th>Observacao</th>
+             </thead>
+             <tbody id="dados">
+
+            </tbody>
+        </table>    
+     
+        <h1>Cadastro de materia</h1>
+        <form name="cadastraMateria" method="get">
+           Nome:<input type="text" id="cadastraNome" name="cadastraNome" onclick="this.value=''">
+           <br><br>
+           Horario:<input type="text" id="cadastraHorario" name="cadastraHorario" onclick="this.value=''">
+           <br><br>
+           CargaHoraria:<input type="text" id="cadastraCargaHoraria" name="cadastraCargaHoraria" onclick="this.value=''">
+           <br><br>
+           Media:<input type="text" id="cadastraMedia" name="cadastraMedia" onclick="this.value=''">
+           <br><br>
+           Aprovado:<input type="text" id="cadastraAprovado" name="cadastraAprovado" onclick="this.value=''">
+           <br><br>
+           Observacao:<input type="text" id="cadastraObservacao" name="cadastraObservacao" onclick="this.value=''">
+
+            <button onclick="Cadastra()">Cadastrar</button>
+            <script>
+                function Cadastra(){
+                    var Nome = document.getElementById('cadastraNome').value;
+                    var Horario = document.getElementById('cadastraHorario').value;
+                    var CargaHoraria = document.getElementById('cadastraCargaHoraria').value;
+                    var Media = document.getElementById('cadastraMedia').value;
+                    var Aprovado = document.getElementById('cadastraAprovado').value;
+                    var Observacao = document.getElementById('cadastraObservacao').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/materia/cadastrar/"
+                             +Nome+'&'+Horario+'&'+CargaHoraria+'&'+Media+'&'+Aprovado+'&'+Observacao);
+                }
+            </script>
+        </form>
+        
+        <h1>Atualiza dados de materia</h1>
+        <form name="atualizaMateria" method="get">
+             Nome:<input type="text" id="atualizaNome" name="atualizaNome" onclick="this.value=''">
+           <br><br>
+           Horario:<input type="text" id="atualizaHorario" name="atualizaHorario" onclick="this.value=''">
+           <br><br>
+           CargaHoraria:<input type="text" id="atualizaCargaHoraria" name="atualizaCargaHoraria" onclick="this.value=''">
+           <br><br>
+           Media:<input type="text" id="atualizaMedia" name="atualizaMedia" onclick="this.value=''">
+           <br><br>
+           Aprovado:<input type="text" id="atualizaAprovado" name="atualizaAprovado" onclick="this.value=''">
+           <br><br>
+           Observacao:<input type="text" id="atualizaObservacao" name="atualizaObservacao" onclick="this.value=''">
+
+            <button onclick="Atualiza()">Atualizar</button>
+            <script>
+                function Atualiza(){
+                    var Nome = document.getElementById('atualizaNome').value;
+                    var Horario = document.getElementById('atualizaHorario').value;
+                    var CargaHoraria = document.getElementById('atualizaCargaHoraria').value;
+                    var Media = document.getElementById('atualizaMedia').value;
+                    var Aprovado = document.getElementById('atualizaAprovado').value;
+                    var Observacao = document.getElementById('atualizaObservacao').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/materia/atualizar/"
+                             +Nome+'&'+Horario+'&'+CargaHoraria+'&'+Media+'&'+Aprovado+'&'+Observacao);
+                }
+            </script>
+        </form>
+        
+        
+        <h1>Remover materia</h1>
+        <form name="removeMateria" method="get">
+           Id:<input type="text" id="removeId" name="removeId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Remove()">Remover</button>
+            <script>
+                function Remove(){
+                    var id = document.getElementById('removeId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/materia/remover/"
+                             +id);
+                }
+            </script>
+        </form>
+        
+        <h1>Seleciona materia</h1>
+        <form name="selecionaMateria" method="get">
+               Id:<input type="text" id="selecionaId" name="selecionaId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Seleciona()">Selecionar</button>
+            <script>
+                function Seleciona(){
+                    var id = document.getElementById('selecionaId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/materia/select/"
+                             +id);
+                        function(data){
+                            "Id:"+data.id+"\nNome:"+data.nome+"\nHorario:"
+                                    +data.horario+"\nCarga Horaria:"+data.cargaHoraria+"\nMedia:"+data.media
+                            +"\nAprovado:"+data.aprovado+"\nObservacao:"+data.observacao;
+                        };
+                 }
+            </script>
+        </form>
+        
+    </body>
+    <script>
+        $(document).ready(function(){
+            $.get("http://localhost:8080/plano-de-estudo-webapi/api/materia/", 
+            function(data){
+                for(var i=0;i<data.length;i++){
+                    var c = data[i];
+                    var dados = $("#dados");
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nome+"</td></tr>"
+                                    +c.horario+"</td></tr>"+c.cargaHoraria+"</td></tr>"
+                                    +c.Media+"</td></tr>"+c.aprovado+"</td></tr>"
+                                    +c.observacao+"</td></tr>");
+                }    
+            });
+        });
+    </script>
+</html>

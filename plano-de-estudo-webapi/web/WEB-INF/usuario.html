@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>plano-de-estudo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Lista de usuários</h1>
+        <table>
+            <thead>
+             <th>Id</th>
+             <th>Nome</th>
+             <th>Email</th>
+             <th>Celular</th>
+             </thead>
+             <tbody id="dados">
+
+            </tbody>
+        </table>    
+     
+        <h1>Cadastro de usuário</h1>
+        <form name="cadastraUsuario" method="get">
+           Nome:<input type="text" id="cadastraNome" name="cadastraNome" onclick="this.value=''">
+           <br><br>
+           Email:<input type="text" id="cadastraEmail" name="cadastraEmail" onclick="this.value=''">
+           <br><br>
+           Celular:<input type="text" id="cadastraCelular" name="cadastraCelular" onclick="this.value=''">
+            <button onclick="Cadastra()">Cadastrar</button>
+            <script>
+                function Cadastra(){
+                    var nome = document.getElementById('cadastraNome').value;
+                    var email = document.getElementById('cadastraEmail').value;
+                    var celular = document.getElementById('cadastraCelular').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario/cadastrar/"
+                             +nome+'&'+email+'&'+celular);
+                }
+            </script>
+        </form>
+        
+        <h1>Atualizar dados do usuário</h1>
+        <form name="atualizaUsuario" method="get">
+           Nome:<input type="text" id="atualizaNome" name="atualizaNome" onclick="this.value=''">
+           <br><br>
+           Email:<input type="text" id="atualizaEmail" name="atualizaEmail" onclick="this.value=''">
+           <br><br>
+           Celular:<input type="text" id="atualizaCelular" name="atualizaCelular" onclick="this.value=''">
+            <button onclick="Atualiza()">Atualizar</button>
+            <script>
+                function Atualiza(){
+                    var nome = document.getElementById('atualizaNome').value;
+                    var email = document.getElementById('atualizaEmail').value;
+                    var celular = document.getElementById('atualizaCelular').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario/atualizar/"
+                             +nome+'&'+email+'&'+celular);
+                }
+            </script>
+        </form>
+        
+        <h1>Remover usuário</h1>
+        <form name="removeUsuario" method="get">
+           Id:<input type="text" id="removeId" name="removeId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Remove()">Remover</button>
+            <script>
+                function Remove(){
+                    var id = document.getElementById('removeId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario/remover/"
+                             +id);
+                }
+            </script>
+        </form>
+        
+        <h1>Seleciona usuário</h1>
+        <form name="selecionaUsuario" method="get">
+               Id:<input type="text" id="selecionaId" name="selecionaId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Seleciona()">Selecionar</button>
+            <script>
+                function Seleciona(){
+                    var id = document.getElementById('selecionaId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario/select/"
+                             +id);
+                        function(data){
+                            "Id:"+data.id+"\nNome:"+data.nome+"\nEmail:"
+                                    +data.email+"\nCelular:"+data.celular;
+                        };
+                 }
+            </script>
+        </form>
+        
+    </body>
+    <script>
+        $(document).ready(function(){
+            $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario/", 
+            function(data){
+                for(var i=0;i<data.length;i++){
+                    var c = data[i];
+                    var dados = $("#dados");
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nome+"</td></tr>"
+                                    +c.email+"</td></tr>"+c.celular+"</td></tr>");
+                }    
+            });
+        });
+    </script>
+</html>

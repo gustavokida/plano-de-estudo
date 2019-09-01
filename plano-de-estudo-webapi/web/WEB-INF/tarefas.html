@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>plano-de-estudo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Lista de tarefas</h1>
+        <table>
+            <thead>
+             <th>Id</th>
+             <th>Observacao</th>
+             <th>Data</th>
+             <th>Feito</th>
+             <th>Importante</th>
+             <th>DataEntrega</th>
+             <th>IdConteudo</th>
+             </thead>
+             <tbody id="dados">
+
+            </tbody>
+        </table>    
+     
+        <h1>Cadastro de tarefas</h1>
+        <form name="cadastraTarefas" method="get">
+           Observacao:<input type="text" id="cadastraObservacao" name="cadastraObservacao" onclick="this.value=''">
+           <br><br>
+           Data:<input type="text" id="cadastraData" name="cadastraData" onclick="this.value=''">
+           <br><br>
+           Feito:<input type="text" id="cadastraFeito" name="cadastraFeito" onclick="this.value=''">
+           <br><br>
+           Importante:<input type="text" id="cadastraImportante" name="cadastraImportante" onclick="this.value=''">
+           <br><br>
+           DataEntrega:<input type="text" id="cadastraDataEntrega" name="cadastraDataEntrega" onclick="this.value=''">
+           <br><br>
+           IdConteudo:<input type="text" id="cadastraIdConteudo" name="cadastraIdConteudo" onclick="this.value=''">
+
+            <button onclick="Cadastra()">Cadastrar</button>
+            <script>
+                function Cadastra(){
+                    var Observacao = document.getElementById('cadastraObservacao').value;
+                    var Data = document.getElementById('cadastraData').value;
+                    var Feito = document.getElementById('cadastraFeito').value;
+                    var Importante = document.getElementById('cadastraImportante').value;
+                    var DataEntrega = document.getElementById('cadastraDataEntrega').value;
+                    var IdConteudo = document.getElementById('cadastraIdConteudo').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/tarefas/cadastrar/"
+                             +Observacao+'&'+Data+'&'+Feito+'&'+Importante+'&'+DataEntrega+'&'+IdConteudo);
+                }
+            </script>
+        </form>
+        
+        <h1>Atualiza dados de tarefas</h1>
+        <form name="atualizaTarefas" method="get">
+           Observacao:<input type="text" id="cadastraObservacao" name="cadastraObservacao" onclick="this.value=''">
+           <br><br>
+           Data:<input type="text" id="cadastraData" name="cadastraData" onclick="this.value=''">
+           <br><br>
+           Feito:<input type="text" id="cadastraFeito" name="cadastraFeito" onclick="this.value=''">
+           Importante:<input type="text" id="atualizaImportante" name="atualizaImportante" onclick="this.value=''">
+           <br><br>
+           DataEntrega:<input type="text" id="atualizaDataEntrega" name="atualizaDataEntrega" onclick="this.value=''">
+           IdConteudo:<input type="text" id="atualizaIdConteudo" name="atualizaIdConteudo" onclick="this.value=''">
+
+            <button onclick="Atualiza()">Atualizar</button>
+            <script>
+                function Atualiza(){
+                    var Observacao = document.getElementById('atualizaObservacao').value;
+                    var Data = document.getElementById('atualizaData').value;
+                    var Feito = document.getElementById('atualizaFeito').value;
+                    var Importante = document.getElementById('atualizaImportante').value;
+                    var DataEntrega = document.getElementById('atualizaDataEntrega').value;
+                    var IdConteudo = document.getElementById('atualizaIdConteudo').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/tarefas/atualizar/"
+                             +Observacao+'&'+Data+'&'+Feito+'&'+Importante+'&'+DataEntrega+'&'+IdConteudo);
+                }
+            </script>
+        </form>
+        
+        
+        <h1>Remover tarefas</h1>
+        <form name="removeTarefas" method="get">
+           Id:<input type="text" id="removeId" name="removeId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Remove()">Remover</button>
+            <script>
+                function Remove(){
+                    var id = document.getElementById('removeId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/tarefas/remover/"
+                             +id);
+                }
+            </script>
+        </form>
+        
+        <h1>Seleciona tarefas</h1>
+        <form name="selecionaTarefas" method="get">
+               Id:<input type="text" id="selecionaId" name="selecionaId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Seleciona()">Selecionar</button>
+            <script>
+                function Seleciona(){
+                    var id = document.getElementById('selecionaId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/tarefas/select/"
+                             +id);
+                        function(data){
+                            "Id:"+data.id+"\nObservacao:"+data.observacao+"\nData:"
+                                    +data.data+"\nFeito:"+data.feito+"\nImportante:"+data.importante
+                            +"\nData de Entrega:"+data.dataEntrega+"\nId Conteudo:"+data.idConteudo;
+                        };
+                 }
+            </script>
+        </form>
+        
+    </body>
+    <script>
+        $(document).ready(function(){
+            $.get("http://localhost:8080/plano-de-estudo-webapi/api/tarefas/", 
+            function(data){
+                for(var i=0;i<data.length;i++){
+                    var c = data[i];
+                    var dados = $("#dados");
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.observacao+"</td></tr>"
+                                    +c.data+"</td></tr>"+c.feito+"</td></tr>"
+                                    +c.importante+"</td></tr>"+c.dataEntrega+"</td></tr>"
+                                    +c.idConteudo+"</td></tr>");
+                }    
+            });
+        });
+    </script>
+</html>

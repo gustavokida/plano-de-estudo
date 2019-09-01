@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>plano-de-estudo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Lista de conteudo</h1>
+        <table>
+            <thead>
+             <th>Id</th>
+             <th>Nome</th>
+             <th>Observacao</th>
+             <th>Data</th>
+             <th>idMateria</th>
+             </thead>
+             <tbody id="dados">
+
+            </tbody>
+        </table>    
+     
+        <h1>Cadastro de conteudo</h1>
+        <form name="cadastraConteudo" method="get">
+           Nome:<input type="text" id="cadastraNome" name="cadastraNome" onclick="this.value=''">
+           <br><br>
+           Observacao:<input type="text" id="cadastraObservacao" name="cadastraObservacao" onclick="this.value=''">
+           <br><br>
+           Data:<input type="text" id="cadastraData" name="cadastraData" onclick="this.value=''">
+           <br><br>
+           idMateria:<input type="text" id="cadastraIdMateria" name="cadastraIdMateria" onclick="this.value=''">
+
+            <button onclick="Cadastra()">Cadastrar</button>
+            <script>
+                function Cadastra(){
+                    var Nome = document.getElementById('cadastraNome').value;
+                    var Observacao = document.getElementById('cadastraObservacao').value;
+                    var Data = document.getElementById('cadastraData').value;
+                    var IdMateria = document.getElementById('cadastraIdMateria').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/conteudo/cadastrar/"Nome+'&'+
+                             +Observacao+'&'+Data+'&'+IdMateria);
+                }
+            </script>
+        </form>
+        
+        <h1>Atualiza dados de conteudo</h1>
+        <form name="atualizaConteudo" method="get">
+           Nome:<input type="text" id="atualizaNome" name="atualizaNome" onclick="this.value=''">
+           <br><br>
+           Observacao:<input type="text" id="atualizaObservacao" name="atualizaObservacao" onclick="this.value=''">
+           <br><br>
+           Data:<input type="text" id="atualizaData" name="atualizaData" onclick="this.value=''">
+           idMateria:<input type="text" id="atualizaIdMateria" name="atualizaIdMateria" onclick="this.value=''">
+
+            <button onclick="Atualiza()">Atualizar</button>
+            <script>
+                function Atualiza(){
+                    var Nome = document.getElementById('atualizaNome').value;
+                    var Observacao = document.getElementById('atualizaObservacao').value;
+                    var Data = document.getElementById('atualizaData').value;
+                    var IdMateria = document.getElementById('atualizaIdMateria').value;
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/conteudo/atualizar/"Nome+'&'+
+                             +Observacao+'&'+Data+'&'+IdMateria);
+                }
+            </script>
+        </form>
+        
+        
+        <h1>Remover conteudo</h1>
+        <form name="removeConteudo" method="get">
+           Id:<input type="text" id="removeId" name="removeId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Remove()">Remover</button>
+            <script>
+                function Remove(){
+                    var id = document.getElementById('removeId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/conteudo/remover/"
+                             +id);
+                }
+            </script>
+        </form>
+        
+        <h1>Seleciona conteudo</h1>
+        <form name="selecionaConteudo" method="get">
+               Id:<input type="text" id="selecionaId" name="selecionaId" onclick="this.value=''">
+           <br><br>
+           <button onclick="Seleciona()">Selecionar</button>
+            <script>
+                function Seleciona(){
+                    var id = document.getElementById('selecionaId').value;
+                    $.get("http://localhost:8080/plano-de-estudo-webapi/api/conteudo/select/"
+                             +id);
+                        function(data){
+                            "Id:"+data.id+"\nNome:"+data.nome+"\nObservacao:"+data.observacao+"\nData:"
+                                    +data.data+"\nId Materia:"+data.idMateria;
+                        };
+                 }
+            </script>
+        </form>
+        
+    </body>
+    <script>
+        $(document).ready(function(){
+            $.get("http://localhost:8080/plano-de-estudo-webapi/api/conteudo/", 
+            function(data){
+                for(var i=0;i<data.length;i++){
+                    var c = data[i];
+                    var dados = $("#dados");
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nome+"</td><td>"+c.observacao+"</td></tr>"
+                                    +c.data+"</td></tr>"+c.idMateria+"</td></tr>");
+                }    
+            });
+        });
+    </script>
+</html>
