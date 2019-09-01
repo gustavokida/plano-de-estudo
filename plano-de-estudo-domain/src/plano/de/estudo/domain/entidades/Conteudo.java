@@ -12,6 +12,7 @@ import java.util.Date;
  * @author gustavo
  */
 public class Conteudo {
+
     private int id;
     private String nome;
     private String observacao;
@@ -57,9 +58,5 @@ public class Conteudo {
     public void setIdMateria(int idMateria) {
         this.idMateria = idMateria;
     }
-    
-    
-    
 
-    
 }

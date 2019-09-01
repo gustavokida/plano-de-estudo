@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.util.Date;
@@ -13,42 +12,40 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import plano.de.estudo.domain.dao.postgresql.ConteudoDAOImplPostgreSQL;
 
-
 @Path("/conteudo")
 public class ConteudoController {
-    
-    private IConteudoDAO
-            banco = new ConteudoDAOImplPostgreSQL();
-    
+
+    private IConteudoDAO banco = new ConteudoDAOImplPostgreSQL();
+
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Conteudo> index(){
+    public List<Conteudo> index() {
         return banco.consultar();
     }
- 
+
     @GET
     @Path("/select/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Conteudo select(@PathParam("id") int pk){
-        System.out.println("Parametro:"+pk);
-        for(Conteudo cat: banco.consultar()){
-            if(cat.getId() == pk){
+    public Conteudo select(@PathParam("id") int pk) {
+        System.out.println("Parametro:" + pk);
+        for (Conteudo cat : banco.consultar()) {
+            if (cat.getId() == pk) {
                 return cat;
             }
         }
-        String json = "{\"id\":"+pk+"}";
+        String json = "{\"id\":" + pk + "}";
         return null;
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/cadastrar/{nome}&{observacao}&{data}&{idMateria}")
     public String cadastrar(@PathParam("nome") String nome,
             @PathParam("observacao") String observacao,
             @PathParam("data") Date data,
-            @PathParam("idMateria") int idMateria){
-        try{
+            @PathParam("idMateria") int idMateria) {
+        try {
             System.out.println("Cadastrando");
             Conteudo nova = new Conteudo();
             nova.setNome(nome);
@@ -56,26 +53,26 @@ public class ConteudoController {
             nova.setData(data);
             nova.setIdMateria(idMateria);
             banco.inserir(nova);
-        } catch(Exception erro){
+        } catch (Exception erro) {
             return "{\"status\": 0}";
         }
         String ret = "{\"status\": 1}";
         return ret;
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/atualizar/{nome}&{observacao}&{data}&{idMateria}")
     public void atualizar(@PathParam("nome") String nome,
             @PathParam("observacao") String observacao,
             @PathParam("data") Date data,
-            @PathParam("idMateria") int idMateria){
+            @PathParam("idMateria") int idMateria) {
         Conteudo nova = new Conteudo();
         nova.setNome(nome);
         nova.setObservacao(observacao);
         nova.setData(data);
         nova.setIdMateria(idMateria);
         banco.atualizar(nova);
-        
+
     }
 }

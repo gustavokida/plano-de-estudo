@@ -32,8 +32,7 @@ CREATE TABLE Prova (
     nota FLOAT,
     data DATE,
     observacao VARCHAR,
-    idConteudo INT,
-    FOREIGN KEY (idConteudo) REFERENCES Conteudo(id)
+    idConteudo INT
 );
 
 CREATE TABLE Conteudo (
@@ -41,8 +40,7 @@ CREATE TABLE Conteudo (
     nome VARCHAR,
     observacao VARCHAR,
     data DATE,
-    idMateria INT,
-    FOREIGN KEY(idMateria) REFERENCES Materia(id)
+    idMateria INT
 );
 
 CREATE TABLE Tarefas (
@@ -52,8 +50,7 @@ CREATE TABLE Tarefas (
     feito BOOLEAN,
     importante BOOLEAN,
     dataEntrega DATE,
-    idConteudo INT,
-    FOREIGN KEY(idConteudo) REFERENCES Conteudo(id)
+    idConteudo INT
 );
  
 

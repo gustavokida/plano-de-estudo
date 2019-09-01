@@ -12,6 +12,7 @@ import java.util.Date;
  * @author gustavo
  */
 public class Tarefas {
+
     private int id;
     private String observacao;
     private Date data;
@@ -76,5 +77,4 @@ public class Tarefas {
         this.idConteudo = idConteudo;
     }
 
-   
 }

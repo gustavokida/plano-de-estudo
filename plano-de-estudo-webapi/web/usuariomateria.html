@@ -15,6 +15,11 @@ and open the template in the editor.
             crossorigin="anonymous"></script>
     </head>
     <body>
+        <form action="http://localhost:8080/plano-de-estudo-webapi/" method="post">
+            <button type="submit">Página Inicial</button>
+        </form>
+        
+        <br></br>
         <h1>Lista de usuarioMateria</h1>
         <table>
             <thead>
@@ -47,6 +52,8 @@ and open the template in the editor.
         
         <h1>Atualiza dados de usuariomateria</h1>
         <form name="atualizaUsuarioMateria" method="get">
+           Id:<input type="text" id="atualizaId" name="atualizaId" onclick="this.value=''">
+           <br><br>
            IdUsuario:<input type="text" id="atualizaIdUsuario" name="atualizaIdUsuario" onclick="this.value=''">
            <br><br>
            IdMateria:<input type="text" id="atualizaIdMateria" name="atualizaIdMateria" onclick="this.value=''">
@@ -54,9 +61,10 @@ and open the template in the editor.
             <button onclick="Atualiza()">Atualizar</button>
             <script>
                 function Atualiza(){
+                    var Id = document.getElementById("atualizaId").value;            
                     var IdUsuario = document.getElementById('atualizaIdUsuario').value;
                     var IdMateria = document.getElementById('atualizaIdMateria').value;
-                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuariomateria/atualizar/"
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuariomateria/atualizar/"+Id+'&'+
                              +IdUsuario+'&'+IdMateria);
             </script>
         </form>
@@ -102,7 +110,7 @@ and open the template in the editor.
                 for(var i=0;i<data.length;i++){
                     var c = data[i];
                     var dados = $("#dados");
-                    dados.append("<tr><td>"+c.id+"</td><td>"+c.idUsuario+"</td></tr>"
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.idUsuario+"</td><td>"
                                     +c.idMateria+"</td></tr>");
                 }    
             });

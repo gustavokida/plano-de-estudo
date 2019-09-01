@@ -15,6 +15,11 @@ and open the template in the editor.
             crossorigin="anonymous"></script>
     </head>
     <body>
+        <form action="http://localhost:8080/plano-de-estudo-webapi/" method="post">
+            <button type="submit">Página Inicial</button>
+        </form>
+        
+        <br></br>
         <h1>Lista de materia</h1>
         <table>
             <thead>
@@ -62,7 +67,9 @@ and open the template in the editor.
         
         <h1>Atualiza dados de materia</h1>
         <form name="atualizaMateria" method="get">
-             Nome:<input type="text" id="atualizaNome" name="atualizaNome" onclick="this.value=''">
+           Id:<input type="text" id="atualizaId" name="atualizaId" onclick="this.value=''">
+           <br><br>
+           Nome:<input type="text" id="atualizaNome" name="atualizaNome" onclick="this.value=''">
            <br><br>
            Horario:<input type="text" id="atualizaHorario" name="atualizaHorario" onclick="this.value=''">
            <br><br>
@@ -77,13 +84,14 @@ and open the template in the editor.
             <button onclick="Atualiza()">Atualizar</button>
             <script>
                 function Atualiza(){
+                    var Id = document.getElementById("atualizaId").value;
                     var Nome = document.getElementById('atualizaNome').value;
                     var Horario = document.getElementById('atualizaHorario').value;
                     var CargaHoraria = document.getElementById('atualizaCargaHoraria').value;
                     var Media = document.getElementById('atualizaMedia').value;
                     var Aprovado = document.getElementById('atualizaAprovado').value;
                     var Observacao = document.getElementById('atualizaObservacao').value;
-                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/materia/atualizar/"
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/materia/atualizar/"+Id+'&'+
                              +Nome+'&'+Horario+'&'+CargaHoraria+'&'+Media+'&'+Aprovado+'&'+Observacao);
                 }
             </script>
@@ -131,10 +139,12 @@ and open the template in the editor.
                 for(var i=0;i<data.length;i++){
                     var c = data[i];
                     var dados = $("#dados");
-                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nome+"</td></tr>"
-                                    +c.horario+"</td></tr>"+c.cargaHoraria+"</td></tr>"
-                                    +c.Media+"</td></tr>"+c.aprovado+"</td></tr>"
-                                    +c.observacao+"</td></tr>");
+                    dados.append("<tr><td>"+c.id+"</td><td>"
+                            +c.nome+"</td>"+
+                            "<td>" +c.horario+"</td>"
+                            +"<td>"+c.cargaHoraria+"</td>"
+                                    +"<td>"+c.media+"</td>"+"<td>"+c.aprovado+"</td>"
+                                   +"<td>" +c.observacao+"</td></tr>");
                 }    
             });
         });

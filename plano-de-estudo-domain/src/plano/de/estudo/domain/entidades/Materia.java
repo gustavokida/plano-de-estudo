@@ -13,6 +13,7 @@ import java.util.Date;
  * @author gustavo
  */
 public class Materia {
+
     private int id;
     private String nome;
     private Time horario;
@@ -76,5 +77,5 @@ public class Materia {
     public void setHorario(Time horario) {
         this.horario = horario;
     }
-    
+
 }

@@ -15,6 +15,11 @@ and open the template in the editor.
             crossorigin="anonymous"></script>
     </head>
     <body>
+        <form action="http://localhost:8080/plano-de-estudo-webapi/" method="post">
+            <button type="submit">Página Inicial</button>
+        </form>
+        
+        <br></br>
         <h1>Lista de prova</h1>
         <table>
             <thead>
@@ -54,6 +59,8 @@ and open the template in the editor.
         
         <h1>Atualiza dados de prova</h1>
         <form name="atualizaProva" method="get">
+           Id:<input type="text" id="atualizaId" name="atualizaId" onclick="this.value=''">
+           <br><br>
            Nota:<input type="text" id="atualizaNota" name="atualizaNota" onclick="this.value=''">
            <br><br>
            Data:<input type="text" id="atualizaData" name="atualizaData" onclick="this.value=''">
@@ -65,11 +72,12 @@ and open the template in the editor.
             <button onclick="Atualiza()">Atualizar</button>
             <script>
                 function Atualiza(){
+                    var Id = document.getElementById("atualizaId").value;
                     var Nota = document.getElementById('atualizaNota').value;
                     var Data = document.getElementById('atualizaData').value;
                     var Observacao = document.getElementById('atualizaObservacao').value;
                     var IdConteudo = document.getElementById('atualizaIdConteudo').value;
-                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/prova/atualizar/"
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/prova/atualizar/"+Id+'&'+
                              +Nota+'&'+Data+'&'+Observacacao+'&'+IdConteudo);
                 }
             </script>
@@ -116,8 +124,8 @@ and open the template in the editor.
                 for(var i=0;i<data.length;i++){
                     var c = data[i];
                     var dados = $("#dados");
-                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nota+"</td></tr>"
-                                    +c.data+"</td></tr>"+c.observacao+"</td></tr>"
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nota+"</td><td>"
+                                    +c.data+"</td><td>"+c.observacao+"</td><td>"
                                     +c.idConteudo+"</td></tr>");
                 }    
             });

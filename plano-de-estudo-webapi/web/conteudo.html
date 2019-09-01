@@ -15,6 +15,11 @@ and open the template in the editor.
             crossorigin="anonymous"></script>
     </head>
     <body>
+        <form action="http://localhost:8080/plano-de-estudo-webapi/" method="post">
+             <button type="submit">Página Inicial</button>
+        </form>
+        
+        <br></br>
         <h1>Lista de conteudo</h1>
         <table>
             <thead>
@@ -54,6 +59,8 @@ and open the template in the editor.
         
         <h1>Atualiza dados de conteudo</h1>
         <form name="atualizaConteudo" method="get">
+           Id:<input type="text" id="atualizaId" name="atualizaId" onclick="this.value=''">
+           <br><br>
            Nome:<input type="text" id="atualizaNome" name="atualizaNome" onclick="this.value=''">
            <br><br>
            Observacao:<input type="text" id="atualizaObservacao" name="atualizaObservacao" onclick="this.value=''">
@@ -64,11 +71,12 @@ and open the template in the editor.
             <button onclick="Atualiza()">Atualizar</button>
             <script>
                 function Atualiza(){
+                    var Id = document.getElementById("atualizaId").value;
                     var Nome = document.getElementById('atualizaNome').value;
                     var Observacao = document.getElementById('atualizaObservacao').value;
                     var Data = document.getElementById('atualizaData').value;
                     var IdMateria = document.getElementById('atualizaIdMateria').value;
-                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/conteudo/atualizar/"Nome+'&'+
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/conteudo/atualizar/"+Id+'&'+Nome+'&'+
                              +Observacao+'&'+Data+'&'+IdMateria);
                 }
             </script>
@@ -115,8 +123,8 @@ and open the template in the editor.
                 for(var i=0;i<data.length;i++){
                     var c = data[i];
                     var dados = $("#dados");
-                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nome+"</td><td>"+c.observacao+"</td></tr>"
-                                    +c.data+"</td></tr>"+c.idMateria+"</td></tr>");
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nome+"</td><td>"+c.observacao+"</td><td>"
+                                    +c.data+"</td><td>"+c.idMateria+"</td></tr>");
                 }    
             });
         });

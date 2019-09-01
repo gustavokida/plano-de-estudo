@@ -15,6 +15,11 @@ and open the template in the editor.
             crossorigin="anonymous"></script>
     </head>
     <body>
+        <form action="http://localhost:8080/plano-de-estudo-webapi/" method="post">
+            <button type="submit">Página Inicial</button>
+        </form>
+        
+        <br></br>
         <h1>Lista de tarefas</h1>
         <table>
             <thead>
@@ -62,6 +67,8 @@ and open the template in the editor.
         
         <h1>Atualiza dados de tarefas</h1>
         <form name="atualizaTarefas" method="get">
+           Id:<input type="text" id="atualizaId" name="atualizaId" onclick="this.value=''">
+           <br><br>
            Observacao:<input type="text" id="cadastraObservacao" name="cadastraObservacao" onclick="this.value=''">
            <br><br>
            Data:<input type="text" id="cadastraData" name="cadastraData" onclick="this.value=''">
@@ -75,13 +82,14 @@ and open the template in the editor.
             <button onclick="Atualiza()">Atualizar</button>
             <script>
                 function Atualiza(){
+                    var Id = document.getElementById("atualizaId").value;
                     var Observacao = document.getElementById('atualizaObservacao').value;
                     var Data = document.getElementById('atualizaData').value;
                     var Feito = document.getElementById('atualizaFeito').value;
                     var Importante = document.getElementById('atualizaImportante').value;
                     var DataEntrega = document.getElementById('atualizaDataEntrega').value;
                     var IdConteudo = document.getElementById('atualizaIdConteudo').value;
-                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/tarefas/atualizar/"
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/tarefas/atualizar/"+Id+'&'+
                              +Observacao+'&'+Data+'&'+Feito+'&'+Importante+'&'+DataEntrega+'&'+IdConteudo);
                 }
             </script>
@@ -129,9 +137,9 @@ and open the template in the editor.
                 for(var i=0;i<data.length;i++){
                     var c = data[i];
                     var dados = $("#dados");
-                    dados.append("<tr><td>"+c.id+"</td><td>"+c.observacao+"</td></tr>"
-                                    +c.data+"</td></tr>"+c.feito+"</td></tr>"
-                                    +c.importante+"</td></tr>"+c.dataEntrega+"</td></tr>"
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.observacao+"</td><td>"
+                                    +c.data+"</td><td>"+c.feito+"</td><td>"
+                                    +c.importante+"</td><td>"+c.dataEntrega+"</td><td>"
                                     +c.idConteudo+"</td></tr>");
                 }    
             });

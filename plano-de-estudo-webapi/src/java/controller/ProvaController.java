@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.util.Date;
@@ -13,58 +12,56 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import plano.de.estudo.domain.dao.postgresql.ProvaDAOImplPostgreSQL;
 
-
 @Path("/prova")
 public class ProvaController {
-    
-    private IProvaDAO
-            banco = new ProvaDAOImplPostgreSQL();
-    
+
+    private IProvaDAO banco = new ProvaDAOImplPostgreSQL();
+
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Prova> index(){
+    public List<Prova> index() {
         return banco.consultar();
     }
 
     @GET
     @Path("/remover/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void remover(@PathParam("id") int id){
+    public void remover(@PathParam("id") int id) {
         banco.remover(id);
     }
- 
+
     @GET
     @Path("/select/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Prova select(@PathParam("id") int pk){
-        System.out.println("Parametro:"+pk);
-        for(Prova cat: banco.consultar()){
-            if(cat.getId() == pk){
+    public Prova select(@PathParam("id") int pk) {
+        System.out.println("Parametro:" + pk);
+        for (Prova cat : banco.consultar()) {
+            if (cat.getId() == pk) {
                 return cat;
             }
         }
-        String json = "{\"id\":"+pk+"}";
+        String json = "{\"id\":" + pk + "}";
         return null;
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/cadastrar/{nota}&{data}&{observacao}&{idConteudo}")
     public String cadastrar(@PathParam("nota") float nota,
             @PathParam("data") Date data,
             @PathParam("observacao") String observacao,
-            @PathParam("idConteudo") int idConteudo){
-        try{
+            @PathParam("idConteudo") int idConteudo) {
+        try {
             System.out.println("Cadastrando");
             Prova nova = new Prova();
             nova.setNota(nota);
             nova.setData(data);
             nova.setObservacao(observacao);
             nova.setIdConteudo(idConteudo);
-            
+
             banco.inserir(nova);
-        } catch(Exception erro){
+        } catch (Exception erro) {
             return "{\"status\": 0}";
         }
         String ret = "{\"status\": 1}";
@@ -77,7 +74,7 @@ public class ProvaController {
     public void atualizar(@PathParam("nota") float nota,
             @PathParam("data") Date data,
             @PathParam("observacao") String observacao,
-            @PathParam("idConteudo") int idConteudo){
+            @PathParam("idConteudo") int idConteudo) {
         Prova nova = new Prova();
         nova.setNota(nota);
         nova.setData(data);
@@ -85,5 +82,5 @@ public class ProvaController {
         nova.setIdConteudo(idConteudo);
         banco.atualizar(nova);
     }
-    
+
 }

@@ -471,10 +471,9 @@
       </module>
     </application>
     <application context-root="/plano-de-estudo-webapi" object-type="user" name="plano-de-estudo-webapi" directory-deployed="true" location="file:/home/gustavo/Documentos/git/plano-de-estudo/plano-de-estudo/plano-de-estudo-webapi/build/web/">
-      <property name="archiveType" value="war"></property>
       <property name="appLocation" value="file:/home/gustavo/Documentos/git/plano-de-estudo/plano-de-estudo/plano-de-estudo-webapi/build/web/"></property>
+      <property name="archiveType" value="war"></property>
       <property name="defaultAppName" value="web"></property>
-      <property name="keepSessions" value="true"></property>
       <module name="plano-de-estudo-webapi">
         <engine sniffer="security"></engine>
         <engine sniffer="web"></engine>

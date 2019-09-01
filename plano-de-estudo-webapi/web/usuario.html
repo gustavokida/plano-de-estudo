@@ -15,6 +15,11 @@ and open the template in the editor.
             crossorigin="anonymous"></script>
     </head>
     <body>
+        <form action="http://localhost:8080/plano-de-estudo-webapi/" method="post">
+            <button type="submit">Página Inicial</button>
+        </form>
+        
+        <br></br>
         <h1>Lista de usuários</h1>
         <table>
             <thead>
@@ -49,6 +54,8 @@ and open the template in the editor.
         
         <h1>Atualizar dados do usuário</h1>
         <form name="atualizaUsuario" method="get">
+           Id:<input type="text" id="atualizaId" name="atualizaId" onclick="this.value=''">
+           <br><br>
            Nome:<input type="text" id="atualizaNome" name="atualizaNome" onclick="this.value=''">
            <br><br>
            Email:<input type="text" id="atualizaEmail" name="atualizaEmail" onclick="this.value=''">
@@ -57,10 +64,11 @@ and open the template in the editor.
             <button onclick="Atualiza()">Atualizar</button>
             <script>
                 function Atualiza(){
+                    var Id = document.getElementById("atualizaId").value;
                     var nome = document.getElementById('atualizaNome').value;
                     var email = document.getElementById('atualizaEmail').value;
                     var celular = document.getElementById('atualizaCelular').value;
-                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario/atualizar/"
+                     $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario/atualizar/"+Id+'&'+
                              +nome+'&'+email+'&'+celular);
                 }
             </script>
@@ -101,13 +109,13 @@ and open the template in the editor.
     </body>
     <script>
         $(document).ready(function(){
-            $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario.html/", 
+            $.get("http://localhost:8080/plano-de-estudo-webapi/api/usuario/", 
             function(data){
                 for(var i=0;i<data.length;i++){
                     var c = data[i];
                     var dados = $("#dados");
-                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nome+"</td></tr>"
-                                    +c.email+"</td></tr>"+c.celular+"</td></tr>");
+                    dados.append("<tr><td>"+c.id+"</td><td>"+c.nome+"</td><td>"
+                                    +c.email+"</td><td>"+c.celular+"</td></tr>");
                 }    
             });
         });

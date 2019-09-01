@@ -10,6 +10,7 @@ package plano.de.estudo.domain.entidades;
  * @author gustavo
  */
 public class UsuarioMateria {
+
     private int id;
     private int idUsuario;
     private int idMateria;
@@ -37,6 +38,5 @@ public class UsuarioMateria {
     public void setIdMateria(int idMateria) {
         this.idMateria = idMateria;
     }
-    
-    
+
 }

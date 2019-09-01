@@ -12,6 +12,7 @@ import java.util.Date;
  * @author gustavo
  */
 public class Prova {
+
     private int id;
     private float nota;
     private Date data;
@@ -57,6 +58,5 @@ public class Prova {
     public void setIdConteudo(int idConteudo) {
         this.idConteudo = idConteudo;
     }
-    
-    
+
 }
