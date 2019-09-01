@@ -29,10 +29,9 @@ public class ProvaDAOImplPostgreSQL
  public void inserir(Prova ent) {
  Connection con = criaConexao();
  
- String sql = "insert into prova (nota)" + "VALUES ('" + ent.getNota()+ "')," + 
-         "(data)" + "VALUES ('" + ent.getData()+ "')," +
-         "(observacao)" + "VALUES ('" + ent.getObservacao()+ "')," +
-         "(idConteudo)" + "VALUES ('" + ent.getIdConteudo()+ "')" ;
+ String sql = "insert into prova (nota, data, observacao, idConteudo)"
+         + "VALUES ('" + ent.getNota()+"','"+ent.getData()+"','"
+         +ent.getObservacao()+"','"+ent.getIdConteudo()+ " '),";
  
  try{
  con.createStatement().execute(sql);
@@ -44,21 +43,18 @@ public class ProvaDAOImplPostgreSQL
     
  public void atualizar(Prova ent) {
  Connection con = criaConexao();
- String sql = "update prova set " + "nota = ? where id = ?," + 
-        "data = ? where id = ?," + 
-        "observacao = ? where id = ?," + 
+ String sql = "update prova set " + "nota = ?," + 
+        "data = ?," + 
+        "observacao = ?," + 
         "idConteudo = ? where id = ?";
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);
  ps.setFloat(1, ent.getNota());
- ps.setInt(2, ent.getId());
- ps.setDate(3, (Date) ent.getData());
- ps.setInt(4, ent.getId());
- ps.setString(5, ent.getObservacao());
- ps.setInt(6, ent.getId());
- ps.setInt(7, ent.getIdConteudo());
- ps.setInt(8, ent.getId());
+ ps.setDate(2, (Date) ent.getData());
+ ps.setString(3, ent.getObservacao());
+ ps.setInt(4, ent.getIdConteudo());
+ ps.setInt(5, ent.getId());
  ps.execute();
  ps.close();
  con.close();

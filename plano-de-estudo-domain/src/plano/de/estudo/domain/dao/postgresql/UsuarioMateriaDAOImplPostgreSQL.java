@@ -28,8 +28,8 @@ public class UsuarioMateriaDAOImplPostgreSQL
  public void inserir(UsuarioMateria ent) {
  Connection con = criaConexao();
  
- String sql = "insert into usuarioMateria (idUsuario)" + "VALUES ('" + ent.getIdUsuario() + "')," +
-         "(idMateria)" + "VALUES ('" + ent.getIdMateria()+ "')";
+ String sql = "insert into usuarioMateria (idUsuario, idMateria)"
+         + "VALUES ('" + ent.getIdUsuario() + "','" + ent.getIdMateria()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -41,15 +41,14 @@ public class UsuarioMateriaDAOImplPostgreSQL
     
  public void atualizar(UsuarioMateria ent) {
  Connection con = criaConexao();
- String sql = "update usuarioMateria set " + "idUsuario = ? where id = ?," +
+ String sql = "update usuarioMateria set " + "idUsuario = ?," +
         "idMateria = ? where id = ?";
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);
  ps.setInt(1, ent.getIdUsuario());
- ps.setInt(2, ent.getId());
- ps.setInt(3, ent.getIdMateria());
- ps.setInt(4, ent.getId());
+ ps.setInt(2, ent.getIdMateria());
+ ps.setInt(3, ent.getId());
  ps.execute();
  ps.close();
  con.close();

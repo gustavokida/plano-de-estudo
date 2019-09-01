@@ -1,0 +1,214 @@
+[#|2019-08-09T15:50:56.300-0400|WARNING|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[S2004]: Log output channel com.sun.messaging.jmq.util.log.SysLogHandler is disabled: no imqutil in java.library.path|#]
+
+
+[#|2019-08-09T15:50:56.312-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|
+================================================================================
+Message Queue 5.1
+Oracle
+Version:  5.1  (Build 9-b)
+Compile:  July 29 2014 1229
+
+Copyright (c) 2013, Oracle and/or its affiliates.  All rights reserved.
+================================================================================
+Java Runtime: 1.8.0_111 Oracle Corporation /home/gustavo/jdk1.8.0_111/jre
+|#]
+
+
+[#|2019-08-09T15:50:56.341-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|   IMQ_HOME=/home/gustavo/Documentos/glassfish-4.1/glassfish4/mq
+|#]
+
+
+[#|2019-08-09T15:50:56.341-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|IMQ_VARHOME=/home/gustavo/Documentos/glassfish-4.1/glassfish4/glassfish/domains/domain1/imq
+|#]
+
+
+[#|2019-08-09T15:50:56.341-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|Linux 5.0.0-23-generic amd64 gustavo-G3-3579 (12 cpu) gustavo
+|#]
+
+
+[#|2019-08-09T15:50:56.343-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|Java Heap Size: max=466432k, current=285184k
+|#]
+
+
+[#|2019-08-09T15:50:56.343-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|Arguments: -port 7676 -name imqbroker -nobind -imqhome /home/gustavo/Documentos/glassfish-4.1/glassfish4/mq -varhome /home/gustavo/Documentos/glassfish-4.1/glassfish4/glassfish/domains/domain1/imq -libhome /home/gustavo/Documentos/glassfish-4.1/glassfish4/mq/lib -useRmiRegistry -rmiRegistryPort 8686 -save -silent
+|#]
+
+
+[#|2019-08-09T15:50:56.343-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|JMSRA BrokerProps: imq.cluster.dynamicChangeMasterBrokerEnabled=true, imq.service.activate=jmsdirect, imq.imqcmd.password=*****, imq.jmsra.managed=true, imq.cluster.nowaitForMasterBroker=true
+|#]
+
+
+[#|2019-08-09T15:50:56.343-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|Broker Properties: imq.service.activate=jmsdirect, imq.cluster.nowaitForMasterBroker=true, imq.jmx.rmiregistry.use=true, imq.portmapper.port=7676, imq.jmsra.managed=true, imq.instancename=imqbroker, java.util.logging.ConsoleHandler.level=OFF, imq.imqcmd.password=*****, imq.jmx.rmiregistry.port=8686, imq.service.runtimeAdd=mqdirect2, imq.cluster.dynamicChangeMasterBrokerEnabled=true, imq.jmx.rmiregistry.start=false, imq.portmapper.bind=false
+|#]
+
+
+[#|2019-08-09T15:50:56.343-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|Embedded Broker 
+|#]
+
+
+[#|2019-08-09T15:50:56.388-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|imq.persist.minimizeWrites=true
+|#]
+
+
+[#|2019-08-09T15:50:56.389-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|imq.persist.file.minimizeWrites=false
+|#]
+
+
+[#|2019-08-09T15:50:56.403-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1060]: Loading persistent data...
+|#]
+
+
+[#|2019-08-09T15:50:56.403-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|Using built-in file-based persistent store: /home/gustavo/Documentos/glassfish-4.1/glassfish4/glassfish/domains/domain1/imq/instances/imqbroker/
+|#]
+
+
+[#|2019-08-09T15:50:56.461-0400|WARNING|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|WARNING Existing file: incompleteTxnStorehas older cookie version than current version. Current version = 1. Original file version = 0
+|#]
+
+
+[#|2019-08-09T15:50:56.481-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B2219]: Broker property setting imq.persist.minimizeWritesLevel2=true will be ignored
+|#]
+
+
+[#|2019-08-09T15:50:56.503-0400|WARNING|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|WARNING [B3168]: Invalid broker address for this broker to run in cluster: Loopback IP address is not allowed in broker address mq://127.0.1.1:7676/?instName=imqbroker&brokerSessionUID=4801519415099290624&ha=false for cluster
+|#]
+
+
+[#|2019-08-09T15:50:56.504-0400|WARNING|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|WARNING [B1137]: Cluster initialization failed. Disabling the cluster service.
+|#]
+
+
+[#|2019-08-09T15:50:56.509-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1013]: Auto Creation of Queues is enabled
+|#]
+
+
+[#|2019-08-09T15:50:56.543-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|new transaction log enabled
+|#]
+
+
+[#|2019-08-09T15:50:56.543-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|sync writes to disk = false
+|#]
+
+
+[#|2019-08-09T15:50:56.543-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|logNonTransactedMsgSend = false
+|#]
+
+
+[#|2019-08-09T15:50:56.543-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|logNonTransactedMsgAck = false
+|#]
+
+
+[#|2019-08-09T15:50:56.544-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1392]: Opening transaction log with file mode rw, maximum size 10.485.760 bytes
+|#]
+
+
+[#|2019-08-09T15:50:56.563-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1136]: Processing stored transactions
+|#]
+
+
+[#|2019-08-09T15:50:56.564-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1390]: Loading of transactions has been successfully completed
+|#]
+
+
+[#|2019-08-09T15:50:56.564-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1434]: Retrieving stored destinations
+|#]
+
+
+[#|2019-08-09T15:50:56.564-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1503]: Retrieved 0 destinations from store
+|#]
+
+
+[#|2019-08-09T15:50:56.565-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1144]: Creating Dead Message Queue
+|#]
+
+
+[#|2019-08-09T15:50:56.576-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1158]: Administrator has created destination mq.sys.dmq [Queue]
+|#]
+
+
+[#|2019-08-09T15:50:56.672-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1239]: Using platform MBean server
+|#]
+
+
+[#|2019-08-09T15:50:56.701-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1234]: JMX Connector Server jmxrmi started successfully with url service:jmx:rmi://gustavo-G3-3579/jndi/rmi://gustavo-G3-3579:8686/gustavo-G3-3579/7676/jmxrmi
+|#]
+
+
+[#|2019-08-09T15:50:56.785-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1004]: Starting the admin service using tcp(host = *, port=0, mode=dedicated) with min threads 4 and max threads of 10 
+|#]
+
+
+[#|2019-08-09T15:50:56.786-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1227]: Using file user repository for admin service connection authentication
+|#]
+
+
+[#|2019-08-09T15:50:56.796-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1004]: Starting the jms service using tcp(host = *, port=0, mode=dedicated) with min threads 10 and max threads of 1000 
+|#]
+
+
+[#|2019-08-09T15:50:56.796-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1227]: Using file user repository for jms service connection authentication
+|#]
+
+
+[#|2019-08-09T15:50:56.799-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1004]: Starting the mqdirect2 service using in-process connections with min threads 0 and max threads of 0 
+|#]
+
+
+[#|2019-08-09T15:50:56.799-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1227]: Using file user repository for mqdirect2 service connection authentication
+|#]
+
+
+[#|2019-08-09T15:50:56.801-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1004]: Starting the jmsdirect service using  with min threads 0 and max threads of 0 
+|#]
+
+
+[#|2019-08-09T15:50:56.801-0400|INFO|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1227]: Using file user repository for jmsdirect service connection authentication
+|#]
+
+
+[#|2019-08-09T15:50:56.808-0400|FORCE|5.1|imq.log.Logger|_ThreadID=59;_ThreadName=JMS_PROXY_default_JMS_host-kernel(1) SelectorRunner;|[B1039]: Broker "imqbroker@gustavo-G3-3579:7676" ready.
+|#]
+
+
+[#|2019-08-09T16:37:58.593-0400|FORCE|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|[B1047]: Shutting down broker...[BrokerProcess:Thread[Thread-51,5,main]]
+|#]
+
+
+[#|2019-08-09T16:37:58.595-0400|FORCE|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|[B1077]: Broadcast good-bye to all connections ...
+|#]
+
+
+[#|2019-08-09T16:37:58.595-0400|FORCE|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|[B1078]: Flushing good-bye messages ...
+|#]
+
+
+[#|2019-08-09T16:37:58.595-0400|INFO|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|[B1007]: Stopping Service admin with protocol tcp(host = *, port=0, mode=dedicated)
+|#]
+
+
+[#|2019-08-09T16:37:58.597-0400|INFO|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|[B1007]: Stopping Service jmsdirect with protocol 
+|#]
+
+
+[#|2019-08-09T16:37:58.597-0400|INFO|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|[B1007]: Stopping Service mqdirect2 with protocol none
+|#]
+
+
+[#|2019-08-09T16:37:58.597-0400|INFO|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|[B1007]: Stopping Service jms with protocol tcp(host = *, port=0, mode=dedicated)
+|#]
+
+
+[#|2019-08-09T16:37:58.605-0400|WARNING|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|WARNING Caught exception when stopping JMX Connector Server jmxrmi:
+java.io.IOException: Cannot bind to URL: javax.naming.CommunicationException [Root exception is java.rmi.NoSuchObjectException: no such object in table]
+|#]
+
+
+[#|2019-08-09T16:37:58.605-0400|WARNING|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|WARNING [B2138]: Caught exception when stopping JMX Agent:
+java.io.IOException: Cannot bind to URL: javax.naming.CommunicationException [Root exception is java.rmi.NoSuchObjectException: no such object in table]
+|#]
+
+
+[#|2019-08-09T16:38:00.840-0400|FORCE|5.1|imq.log.Logger|_ThreadID=367;_ThreadName=Thread-51;|[B1048]: Shutdown of broker complete.
+|#]
+
+

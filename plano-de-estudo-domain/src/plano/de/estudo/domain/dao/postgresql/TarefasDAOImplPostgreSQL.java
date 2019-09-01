@@ -29,12 +29,10 @@ public class TarefasDAOImplPostgreSQL
  public void inserir(Tarefas ent) {
  Connection con = criaConexao();
  
- String sql = "insert into tarefas (observacao)" + "VALUES ('" + ent.getObservacao()+ "')," +
-         "(data)" + "VALUES ('" + ent.getData()+ "')," +
-         "(feito)" + "VALUES ('" + ent.isFeito()+ "')," +
-         "(importante)" + "VALUES ('" + ent.isImportante()+ "')," +
-         "(dataEntrega)" + "VALUES ('" + ent.getDataEntrega()+ "')," +
-         "(idConteudo)" + "VALUES ('" + ent.getIdConteudo()+ "')";
+ String sql = "insert into tarefas (observacao,data,feito,importante,dataEntrega,idConteudo)"
+         + "VALUES ('" + ent.getObservacao()+ "','" + ent.getData()+ "','" + ent.isFeito()+
+         "','" + ent.isImportante() +"','"+ ent.getDataEntrega()+
+         "','"+ ent.getIdConteudo()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -46,27 +44,22 @@ public class TarefasDAOImplPostgreSQL
     
  public void atualizar(Tarefas ent) {
  Connection con = criaConexao();
- String sql = "update tarefas set " + "observacao = ? where id = ?," +
-        "data = ? where id = ?," +
-        "feito = ? where id = ?," +
-        "importante = ? where id = ?," +
-        "dataEntrega = ? where id = ?," +
+ String sql = "update tarefas set " + "observacao = ?," +
+        "data = ?," +
+        "feito = ?," +
+        "importante = ?," +
+        "dataEntrega = ?," +
         "idConteudo = ? where id = ?";
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);
  ps.setString(1, ent.getObservacao());
- ps.setInt(2, ent.getId());
- ps.setDate(3, (Date) ent.getData());
- ps.setInt(4, ent.getId());
- ps.setBoolean(5, ent.isFeito());
- ps.setInt(6, ent.getId());
- ps.setBoolean(7, ent.isImportante());
- ps.setInt(8, ent.getId());
- ps.setDate(9, (Date) ent.getDataEntrega());
- ps.setInt(10, ent.getId());
- ps.setInt(11, ent.getIdConteudo());
- ps.setInt(12, ent.getId());
+ ps.setDate(2, (Date) ent.getData());
+ ps.setBoolean(3, ent.isFeito());
+ ps.setBoolean(4, ent.isImportante());
+ ps.setDate(5, (Date) ent.getDataEntrega());
+ ps.setInt(6, ent.getIdConteudo());
+ ps.setInt(7, ent.getId());
  ps.execute();
  ps.close();
  con.close();

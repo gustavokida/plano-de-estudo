@@ -28,12 +28,10 @@ public class MateriaDAOImplPostgreSQL
  public void inserir(Materia ent) {
  Connection con = criaConexao();
  
- String sql = "insert into materia (nome)" + "VALUES ('" + ent.getNome() + "')," +
-         "(horario)" + "VALUES ('" + ent.getHorario()+ "')," + 
-         "(cargaHoraria)" + "VALUES ('" + ent.getCargaHoraria()+ "')," + 
-         "(media)" + "VALUES ('" + ent.getMedia()+ "')," +
-         "(aprovado)" + "VALUES ('" + ent.isAprovado()+ "')," +
-         "(observacao)" + "VALUES ('" + ent.getObservacao()+ "')";
+ String sql = "insert into materia (nome, horario, cargaHoraria, media, aprovado, observacao)"
+         + "VALUES ('" + ent.getNome() + "','"+ ent.getHorario()+ "','"+
+         ent.getCargaHoraria()+"','"+ ent.getMedia()+
+         "','"+ ent.isAprovado()+"','"+ ent.getObservacao()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -45,27 +43,22 @@ public class MateriaDAOImplPostgreSQL
     
  public void atualizar(Materia ent) {
  Connection con = criaConexao();
- String sql = "update materia set " + "nome = ? where id = ?," +
-        "horario = ? where id = ?," +
-        "cargaHoraria = ? where id = ?," +
-        "media = ? where id = ?," +
-        "aprovado = ? where id = ?," +
+ String sql = "update materia set " + "nome = ?," +
+        "horario = ?," +
+        "cargaHoraria = ?," +
+        "media = ?," +
+        "aprovado = ?," +
         "observacao = ? where id = ?";
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);
  ps.setString(1, ent.getNome());
- ps.setInt(2, ent.getId());
- ps.setTime(3, ent.getHorario());
- ps.setInt(4, ent.getId());
- ps.setInt(5, ent.getCargaHoraria());
- ps.setInt(6, ent.getId());
- ps.setFloat(7, ent.getMedia());
- ps.setInt(8, ent.getId());
- ps.setBoolean(9, ent.isAprovado());
- ps.setInt(10, ent.getId());
- ps.setString(11, ent.getObservacao());
- ps.setInt(12, ent.getId());
+ ps.setTime(2, ent.getHorario());
+ ps.setInt(3, ent.getCargaHoraria());
+ ps.setFloat(4, ent.getMedia());
+ ps.setBoolean(5, ent.isAprovado());
+ ps.setString(6, ent.getObservacao());
+ ps.setInt(7, ent.getId());
  ps.execute();
  ps.close();
  con.close();

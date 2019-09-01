@@ -29,10 +29,9 @@ public class ConteudoDAOImplPostgreSQL
  public void inserir(Conteudo ent) {
  Connection con = criaConexao();
  
- String sql = "insert into conteudo (nome)" + "VALUES ('" + ent.getNome() + "')," +
-         "(observacao)" + "VALUES ('" + ent.getObservacao()+ "')," +
-         "(data)" + "VALUES ('" + ent.getData()+ "')," +
-         "(idMateria)" + "VALUES ('" + ent.getIdMateria()+ "')";
+ String sql = "insert into conteudo (nome, observacao, data, idMateria)"
+         + "VALUES ('" + ent.getNome() +"','"+ ent.getObservacao() +
+         "','"+ ent.getData()+"','" + ent.getIdMateria()+ "')";
  
  try{
  con.createStatement().execute(sql);
@@ -44,21 +43,18 @@ public class ConteudoDAOImplPostgreSQL
     
  public void atualizar(Conteudo ent) {
  Connection con = criaConexao();
- String sql = "update conteudo set " + "nome = ? where id = ?," + 
-        "observacao = ? where id = ?," + 
-        "data = ? where id = ?," +
+ String sql = "update conteudo set " + "nome = ?," + 
+        "observacao = ?," + 
+        "data = ?," +
         "idMateria = ? where id = ?"; 
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);
  ps.setString(1, ent.getNome());
- ps.setInt(2, ent.getId());
- ps.setString(3, ent.getObservacao());
- ps.setInt(4, ent.getId());
- ps.setDate(5, (Date) ent.getData());
- ps.setInt(6, ent.getId());
- ps.setInt(7, ent.getIdMateria());
- ps.setInt(8, ent.getId());
+ ps.setString(2, ent.getObservacao());
+ ps.setDate(3, (Date) ent.getData());
+ ps.setInt(4, ent.getIdMateria());
+ ps.setInt(5, ent.getId());
  ps.execute();
  ps.close();
  con.close();

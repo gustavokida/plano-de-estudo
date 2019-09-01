@@ -28,9 +28,8 @@ public class UsuarioDAOImplPostgreSQL
  public void inserir(Usuario ent) {
  Connection con = criaConexao();
  
- String sql = "insert into usuario (nome)" + "VALUES ('" + ent.getNome() + "')," +
-         "(email)" + "VALUES ('" + ent.getEmail()+ "')," +
-         "(celular)" + "VALUES ('" + ent.getCelular()+ "')";
+ String sql = "insert into usuario (nome, email, celular)" + "VALUES ('"
+         + ent.getNome() +"','"+ ent.getEmail()+ "','" + ent.getCelular()+ "');";
  
  try{
  con.createStatement().execute(sql);
@@ -42,18 +41,16 @@ public class UsuarioDAOImplPostgreSQL
     
  public void atualizar(Usuario ent) {
  Connection con = criaConexao();
- String sql = "update usuario set " + "nome = ? where id = ?," +
-        "email = ? where id = ?," +
-        "celular = ? where id = ?" ;
+ String sql = "update usuario set " + "nome = ?," +
+        " email = ?," +
+        " celular = ? where id = ?" ;
  
  try{
  PreparedStatement ps = con.prepareStatement(sql);
  ps.setString(1, ent.getNome());
- ps.setInt(2, ent.getId());
- ps.setString(3, ent.getEmail());
+ ps.setString(2, ent.getEmail());
+ ps.setString(3, ent.getCelular());
  ps.setInt(4, ent.getId());
- ps.setString(5, ent.getCelular());
- ps.setInt(6, ent.getId());
  ps.execute();
  ps.close();
  con.close();
